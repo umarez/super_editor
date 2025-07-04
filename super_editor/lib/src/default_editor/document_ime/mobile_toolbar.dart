@@ -159,8 +159,7 @@ class _KeyboardEditingToolbarState extends State<KeyboardEditingToolbar> with Wi
     return Theme(
       data: Theme.of(context).copyWith(
         brightness: brightness,
-        disabledColor:
-            brightness == Brightness.light ? Colors.black.withValues(alpha: 0.5) : Colors.white.withValues(alpha: 0.5),
+        disabledColor: brightness == Brightness.light ? Colors.black.withValues(alpha: 0.5) : Colors.white.withValues(alpha: 0.5),
       ),
       child: IconTheme(
         data: IconThemeData(
@@ -202,75 +201,37 @@ class _KeyboardEditingToolbarState extends State<KeyboardEditingToolbar> with Wi
                               color: _toolbarOps.isBoldActive ? Theme.of(context).primaryColor : null,
                             ),
                             IconButton(
-                              onPressed: selectedNode is TextNode ? _toolbarOps.toggleItalics : null,
-                              icon: const Icon(Icons.format_italic),
-                              color: _toolbarOps.isItalicsActive ? Theme.of(context).primaryColor : null,
-                            ),
-                            IconButton(
-                              onPressed: selectedNode is TextNode ? _toolbarOps.toggleUnderline : null,
-                              icon: const Icon(Icons.format_underline),
-                              color: _toolbarOps.isUnderlineActive ? Theme.of(context).primaryColor : null,
-                            ),
-                            IconButton(
                               onPressed: selectedNode is TextNode ? _toolbarOps.toggleStrikethrough : null,
                               icon: const Icon(Icons.strikethrough_s),
                               color: _toolbarOps.isStrikethroughActive ? Theme.of(context).primaryColor : null,
                             ),
                             IconButton(
-                              onPressed: isSingleNodeSelected &&
-                                      (selectedNode is TextNode &&
-                                          selectedNode.getMetadataValue('blockType') != header1Attribution)
-                                  ? _toolbarOps.convertToHeader1
-                                  : null,
+                              onPressed: isSingleNodeSelected && (selectedNode is TextNode && selectedNode.getMetadataValue('blockType') != header1Attribution) ? _toolbarOps.convertToHeader1 : null,
                               icon: const Icon(Icons.title),
                             ),
                             IconButton(
-                              onPressed: isSingleNodeSelected &&
-                                      (selectedNode is TextNode &&
-                                          selectedNode.getMetadataValue('blockType') != header2Attribution)
-                                  ? _toolbarOps.convertToHeader2
-                                  : null,
+                              onPressed: isSingleNodeSelected && (selectedNode is TextNode && selectedNode.getMetadataValue('blockType') != header2Attribution) ? _toolbarOps.convertToHeader2 : null,
                               icon: const Icon(Icons.title),
                               iconSize: 18,
                             ),
                             IconButton(
-                              onPressed: isSingleNodeSelected &&
-                                      ((selectedNode is ParagraphNode && selectedNode.hasMetadataValue('blockType')) ||
-                                          (selectedNode is TextNode && selectedNode is! ParagraphNode))
-                                  ? _toolbarOps.convertToParagraph
-                                  : null,
+                              onPressed: isSingleNodeSelected && ((selectedNode is ParagraphNode && selectedNode.hasMetadataValue('blockType')) || (selectedNode is TextNode && selectedNode is! ParagraphNode)) ? _toolbarOps.convertToParagraph : null,
                               icon: const Icon(Icons.wrap_text),
                             ),
                             IconButton(
-                              onPressed: isSingleNodeSelected &&
-                                      (selectedNode is TextNode && selectedNode is! ListItemNode ||
-                                          (selectedNode is ListItemNode && selectedNode.type != ListItemType.ordered))
-                                  ? _toolbarOps.convertToOrderedListItem
-                                  : null,
+                              onPressed: isSingleNodeSelected && (selectedNode is TextNode && selectedNode is! ListItemNode || (selectedNode is ListItemNode && selectedNode.type != ListItemType.ordered)) ? _toolbarOps.convertToOrderedListItem : null,
                               icon: const Icon(Icons.looks_one_rounded),
                             ),
                             IconButton(
-                              onPressed: isSingleNodeSelected &&
-                                      (selectedNode is TextNode && selectedNode is! ListItemNode ||
-                                          (selectedNode is ListItemNode && selectedNode.type != ListItemType.unordered))
-                                  ? _toolbarOps.convertToUnorderedListItem
-                                  : null,
+                              onPressed: isSingleNodeSelected && (selectedNode is TextNode && selectedNode is! ListItemNode || (selectedNode is ListItemNode && selectedNode.type != ListItemType.unordered)) ? _toolbarOps.convertToUnorderedListItem : null,
                               icon: const Icon(Icons.list),
                             ),
                             IconButton(
-                              onPressed: isSingleNodeSelected &&
-                                      selectedNode is TextNode &&
-                                      (selectedNode is! ParagraphNode ||
-                                          selectedNode.getMetadataValue('blockType') != blockquoteAttribution)
-                                  ? _toolbarOps.convertToBlockquote
-                                  : null,
+                              onPressed: isSingleNodeSelected && selectedNode is TextNode && (selectedNode is! ParagraphNode || selectedNode.getMetadataValue('blockType') != blockquoteAttribution) ? _toolbarOps.convertToBlockquote : null,
                               icon: const Icon(Icons.format_quote),
                             ),
                             IconButton(
-                              onPressed:
-                                  isSingleNodeSelected && selectedNode is ParagraphNode && selectedNode.text.isEmpty
-                                      ? _toolbarOps.convertToHr
-                                      : null,
+                              onPressed: isSingleNodeSelected && selectedNode is ParagraphNode && selectedNode.text.isEmpty ? _toolbarOps.convertToHr : null,
                               icon: const Icon(Icons.horizontal_rule),
                             ),
                           ],
@@ -329,8 +290,7 @@ class _KeyboardHeightBuilderState extends State<KeyboardHeightBuilder> with Widg
 
   @override
   void didChangeMetrics() {
-    final keyboardHeight =
-        EdgeInsets.fromViewPadding(View.of(context).viewInsets, View.of(context).devicePixelRatio).bottom;
+    final keyboardHeight = EdgeInsets.fromViewPadding(View.of(context).viewInsets, View.of(context).devicePixelRatio).bottom;
     if (keyboardHeight == _keyboardHeight) {
       return;
     }
@@ -393,9 +353,7 @@ class KeyboardEditingToolbarOperations {
       return;
     }
 
-    selection.isCollapsed
-        ? commonOps.toggleComposerAttributions(attributions)
-        : commonOps.toggleAttributionsOnSelection(attributions);
+    selection.isCollapsed ? commonOps.toggleComposerAttributions(attributions) : commonOps.toggleAttributionsOnSelection(attributions);
   }
 
   void convertToHeader1() {
